@@ -32,7 +32,7 @@ object Competition {
   id: Integer
   nom: String
   datePrevue: Date
-  inscriptionsOuvertes: Bolean
+  inscriptionsOuvertes: Boolean\t
   maxJoueurs: Integer
 }
 
@@ -48,7 +48,7 @@ object Joueur {
 object User {
   id: Integer
   login: String
-  motDePasse: Bolean
+  motDePasse: Boolean
 }
 
 object Role {
@@ -58,9 +58,16 @@ object Role {
 
 object Inscription {
   id: Integer
-  dateInscription: Date
+  dateInscription: Date\t
   index: Float
 }
+
+Inscription "*" -> "1" Joueur : "          "
+Competition "1" <- "*" Inscription : "          "
+Joueur "0..1" -- "1" User
+Role "*" - "*" User : "        "
+note top of Inscription : \t<<association>>\n {Lien : Competition, Joueur}
+
 ----
 
 ===== Objectifs
