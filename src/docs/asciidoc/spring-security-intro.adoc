@@ -36,6 +36,12 @@ object Competition {
   maxJoueurs: Integer
 }
 
+object modalite {
+  id: Integer
+  libelle: String
+  
+}
+
 object Joueur {
   id: Integer
   nom: String
