@@ -36,9 +36,9 @@ object Competition {
   maxJoueurs: Integer
 }
 
-object modalite {
+object Modalite {
   id: Integer
-  libelle: String
+  libelle: String\t
   
 }
 
@@ -68,11 +68,12 @@ object Inscription {
   index: Float
 }
 
-Inscription "*" -> "1" Joueur : "          "
-Competition "1" <- "*" Inscription : "          "
-Joueur "0..1" -- "1" User
-Role "*" - "*" User : "        "
-note top of Inscription : \t<<association>>\n {Lien : Competition, Joueur}
+Competition "*" - "*" Joueur : "\t\t"
+Joueur "0..1" -- "0..1" User :"  "
+(Competition, Joueur) .. Inscription
+User "*" - "*" Role : "        "
+Competition "1" -- "*" Modalite
+
 
 ----
 
