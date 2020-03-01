@@ -1,0 +1,98 @@
+= Application exemple
+ifndef::backend-pdf[]
+:imagesdir: images
+endif::[]
+
+== Description
+Pour les besoins de ses adhérents une association sportive de golf souhaite gérer les inscriptions de ses adhérents aux compétitions qu'elle organise.
+
+Modèle de données
+
+[plantuml]
+----
+object Competition {
+  id: Integer
+  nom: String
+  datePrevue: Date
+  inscriptionsOuvertes: Boolean\t
+  maxJoueurs: Integer
+}
+
+object Modalite {
+  id: Integer
+  libelle: String\t
+
+}
+
+object Joueur {
+  id: Integer
+  nom: String
+  prenom: String
+  licence: String
+  index: Float
+
+}
+
+object User {
+  id: Integer
+  login: String
+  motDePasse: Boolean
+}
+
+object Role {
+  id: Integer
+  nom: String
+}
+
+object Inscription {
+  id: Integer
+  dateInscription: Date\t
+  index: Float
+}
+
+Competition "*" - "*" Joueur : "\t\t"
+Joueur "0..1" -- "0..1" User :"  "
+(Competition, Joueur) .. Inscription
+User "*" - "*" Role : "        "
+Competition "1" -- "*" Modalite
+
+
+----
+
+=== Objectifs
+=== Besoins en termes de sécurité
+==== Gestion des utilisateurs
+==== Les autorisations
+* Administrateurs
++
+--
+Peuvent :
+
+** Gérer les utilisateurs
+** Accorder des autorisations
+** Créer des catégories de compétitions
+
+Un administrateurs ne peut pas se supprimer lui-même, garantie qu'il reste au moins un administrateur dans le système
+--
+
+* Gestionnaires
++
+--
+* Créer une compétition
+* Ouvrir les inscriptions à une compétition
+* Fermer les inscriptions
+--
+
+* Utilisateurs
++
+--
+* S'inscrire à une compétition
+* Se désinscrire d'une compétition
+* Consulter la liste des inscrits à une compétition
+--
+
+* Invités
++
+--
+Voir la liste des compétitions, mais pas les inscrits.
+--

@@ -1,0 +1,11 @@
+= Présentation
+ifndef::backend-pdf[]
+:imagesdir: images
+endif::[]
+
+== Vue d'ensemble
+
+Spring Security est un framework qui permet de personaliser et gérer
+l'authentification et les autorisations des applications Spring. Nous étudierons
+plua particulièrement l'utililsation de Spring Security dans une application
+Spring Boot MVC _classique_

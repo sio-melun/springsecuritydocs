@@ -1,0 +1,4 @@
+= Autorisations
+ifndef::backend-pdf[]
+:imagesdir: images
+endif::[]

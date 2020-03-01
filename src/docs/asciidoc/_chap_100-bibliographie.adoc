@@ -1,0 +1,10 @@
+= Bibliographie
+ifndef::backend-pdf[]
+:imagesdir: images
+endif::[]
+
+[bibliography]
+- [[[SSR]]] link:https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/[Spring Security Reference]
+- [[[SSIA]]] Laurentiu Spilca. Spring Security In Action. Manning 2020.
+- [[[SBR]]] link:https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/[Spring Boot Reference]
+- [[[BAELDUNG]]] Sur Spring en général et Spring Security en particulier : link:https://www.baeldung.com/security-spring[Baeldung on Spring Security]
