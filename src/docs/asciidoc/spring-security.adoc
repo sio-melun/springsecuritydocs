@@ -17,5 +17,6 @@ include::_chap_000-intro.adoc[leveloffset=+1]
 include::_chap_010-app_exemple.adoc[leveloffset=+1]
 include::_chap_020-authentification.adoc[leveloffset=+1]
 include::_chap_030-autorisation.adoc[leveloffset=+1]
+include::_chap_050-securiser_la_vue.adoc[leveloffset=+1]
 include::_chap_100-bibliographie.adoc[leveloffset=+1]
 
