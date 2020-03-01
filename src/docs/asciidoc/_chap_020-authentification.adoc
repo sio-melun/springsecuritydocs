@@ -2,3 +2,20 @@
 ifndef::backend-pdf[]
 :imagesdir: images
 endif::[]
+
+== Utilisateurs en mémoire
+
+=== Les deux modes d'authentification
+=== Formulaire d'authentification
+
+=== Authentification en mode royaume
+
+== Depuis une source de données JDBC
+
+== Depuis un annuaire LDAP
+
+== Depuis une source de données personnalisée
+
+== Depuis un serveur CAS
+
+
