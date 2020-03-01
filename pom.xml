@@ -114,7 +114,7 @@
                         <configuration>
                             <!--https://stackoverflow.com/questions/9849868/getting-name-of-last-folder-from-maven-project-basedir -->
                             <!-- sourceFile>docs/${project.file.parentFile.name}.html</sourceFile-->
-                            <!-- other version, for same effect on ios ? -->
+                            <!-- other version, for same effect  -->
                             <sourceFile>docs/${project.projectDirectory.name}.html</sourceFile>
                             <destinationFile>docs/index.html</destinationFile>
                         </configuration>
