@@ -98,7 +98,7 @@
             <!-- rename/create index.html for ghpages/docs (go settings on github)
             <!> index.html will be image html of file in src/docs/asciidoc/
                 which name are same as directory root project
-                (kpu : simple idea to publish ascidoc html generate on github)
+                (kpu : simple idea to publish ascidoc html generate on github pages)
             -->
             <plugin>
                 <groupId>com.coderplus.maven.plugins</groupId>
@@ -113,7 +113,9 @@
                         </goals>
                         <configuration>
                             <!--https://stackoverflow.com/questions/9849868/getting-name-of-last-folder-from-maven-project-basedir -->
-                            <sourceFile>docs/${project.file.parentFile.name}.html</sourceFile>
+                            <!-- sourceFile>docs/${project.file.parentFile.name}.html</sourceFile-->
+                            <!-- other version, for same effect on ios ? -->
+                            <sourceFile>docs/${project.projectDirectory.name}.html</sourceFile>
                             <destinationFile>docs/index.html</destinationFile>
                         </configuration>
                     </execution>
