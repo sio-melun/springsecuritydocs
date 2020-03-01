@@ -525,14 +525,24 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel1">
 <li><a href="#présentation">Présentation</a>
 <ul class="sectlevel2">
-<li><a href="#l-application-exemple">L&#8217;application exemple</a></li>
-<li><a href="#les-sources-d-authentification">Les sources d&#8217;authentification</a></li>
-<li><a href="#la-gestion-des-rôles">La gestion des rôles</a></li>
+<li><a href="#vue-d-ensemble">Vue d&#8217;ensemble</a></li>
 </ul>
 </li>
-<li><a href="#activer-spring-security">Activer Spring Security</a></li>
-<li><a href="#choisir-une-source-d-authentification">Choisir une source d&#8217;authentification</a></li>
-<li><a href="#gérer-les-rôles">Gérer les rôles</a></li>
+<li><a href="#application-exemple">Application exemple</a>
+<ul class="sectlevel2">
+<li><a href="#description">Description</a></li>
+</ul>
+</li>
+<li><a href="#authentification">Authentification</a>
+<ul class="sectlevel2">
+<li><a href="#utilisateurs-en-mémoire">Utilisateurs en mémoire</a></li>
+<li><a href="#depuis-une-source-de-données-jdbc">Depuis une source de données JDBC</a></li>
+<li><a href="#depuis-un-annuaire-ldap">Depuis un annuaire LDAP</a></li>
+<li><a href="#depuis-une-source-de-données-personnalisée">Depuis une source de données personnalisée</a></li>
+<li><a href="#depuis-un-serveur-cas">Depuis un serveur CAS</a></li>
+</ul>
+</li>
+<li><a href="#autorisations">Autorisations</a></li>
 <li><a href="#bibliographie">Bibliographie</a></li>
 </ul>
 </div>
@@ -541,16 +551,22 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="présentation"><a class="anchor" href="#présentation"></a>Présentation</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="vue-d-ensemble"><a class="anchor" href="#vue-d-ensemble"></a>Vue d&#8217;ensemble</h3>
 <div class="paragraph">
 <p>Spring Security est un framework qui permet de personaliser et gérer
 l&#8217;authentification et les autorisations des applications Spring. Nous étudierons
 plua particulièrement l&#8217;utililsation de Spring Security dans une application
 Spring Boot MVC <em>classique</em></p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="application-exemple"><a class="anchor" href="#application-exemple"></a>Application exemple</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="l-application-exemple"><a class="anchor" href="#l-application-exemple"></a>L&#8217;application exemple</h3>
-<div class="sect3">
-<h4 id="description"><a class="anchor" href="#description"></a>Description</h4>
+<h3 id="description"><a class="anchor" href="#description"></a>Description</h3>
 <div class="paragraph">
 <p>Pour les besoins de ses adhérents une association sportive de golf souhaite gérer les inscriptions de ses adhérents aux compétitions qu&#8217;elle organise.</p>
 </div>
@@ -559,24 +575,21 @@ Spring Boot MVC <em>classique</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/diag-d7b17a72d961cbf11363492a5ba342b6.png" alt="diag d7b17a72d961cbf11363492a5ba342b6" width="616" height="240">
-</div>
-</div>
-<div class="sect4">
-<h5 id="objectifs"><a class="anchor" href="#objectifs"></a>Objectifs</h5>
-
-</div>
-<div class="sect4">
-<h5 id="besoins-en-termes-de-sécurité"><a class="anchor" href="#besoins-en-termes-de-sécurité"></a>Besoins en termes de sécurité</h5>
-
+<img src="images/diag-d7b17a72d961cbf11363492a5ba342b6.png" alt="diag d7b17a72d961cbf11363492a5ba342b6" width="649" height="242">
 </div>
 </div>
 <div class="sect3">
-<h4 id="gestion-des-utilisateurs"><a class="anchor" href="#gestion-des-utilisateurs"></a>Gestion des utilisateurs</h4>
+<h4 id="objectifs"><a class="anchor" href="#objectifs"></a>Objectifs</h4>
 
 </div>
 <div class="sect3">
-<h4 id="les-autorisations"><a class="anchor" href="#les-autorisations"></a>Les autorisations</h4>
+<h4 id="besoins-en-termes-de-sécurité"><a class="anchor" href="#besoins-en-termes-de-sécurité"></a>Besoins en termes de sécurité</h4>
+<div class="sect4">
+<h5 id="gestion-des-utilisateurs"><a class="anchor" href="#gestion-des-utilisateurs"></a>Gestion des utilisateurs</h5>
+
+</div>
+<div class="sect4">
+<h5 id="les-autorisations"><a class="anchor" href="#les-autorisations"></a>Les autorisations</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -659,30 +672,47 @@ Spring Boot MVC <em>classique</em></p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="les-sources-d-authentification"><a class="anchor" href="#les-sources-d-authentification"></a>Les sources d&#8217;authentification</h3>
-
-</div>
-<div class="sect2">
-<h3 id="la-gestion-des-rôles"><a class="anchor" href="#la-gestion-des-rôles"></a>La gestion des rôles</h3>
-
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="activer-spring-security"><a class="anchor" href="#activer-spring-security"></a>Activer Spring Security</h2>
+<h2 id="authentification"><a class="anchor" href="#authentification"></a>Authentification</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="utilisateurs-en-mémoire"><a class="anchor" href="#utilisateurs-en-mémoire"></a>Utilisateurs en mémoire</h3>
+<div class="sect3">
+<h4 id="les-deux-modes-d-authentification"><a class="anchor" href="#les-deux-modes-d-authentification"></a>Les deux modes d&#8217;authentification</h4>
+
+</div>
+<div class="sect3">
+<h4 id="formulaire-d-authentification"><a class="anchor" href="#formulaire-d-authentification"></a>Formulaire d&#8217;authentification</h4>
+
+</div>
+<div class="sect3">
+<h4 id="authentification-en-mode-royaume"><a class="anchor" href="#authentification-en-mode-royaume"></a>Authentification en mode royaume</h4>
 
 </div>
 </div>
-<div class="sect1">
-<h2 id="choisir-une-source-d-authentification"><a class="anchor" href="#choisir-une-source-d-authentification"></a>Choisir une source d&#8217;authentification</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="depuis-une-source-de-données-jdbc"><a class="anchor" href="#depuis-une-source-de-données-jdbc"></a>Depuis une source de données JDBC</h3>
+
+</div>
+<div class="sect2">
+<h3 id="depuis-un-annuaire-ldap"><a class="anchor" href="#depuis-un-annuaire-ldap"></a>Depuis un annuaire LDAP</h3>
+
+</div>
+<div class="sect2">
+<h3 id="depuis-une-source-de-données-personnalisée"><a class="anchor" href="#depuis-une-source-de-données-personnalisée"></a>Depuis une source de données personnalisée</h3>
+
+</div>
+<div class="sect2">
+<h3 id="depuis-un-serveur-cas"><a class="anchor" href="#depuis-un-serveur-cas"></a>Depuis un serveur CAS</h3>
 
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="gérer-les-rôles"><a class="anchor" href="#gérer-les-rôles"></a>Gérer les rôles</h2>
+<h2 id="autorisations"><a class="anchor" href="#autorisations"></a>Autorisations</h2>
 <div class="sectionbody">
 
 </div>
@@ -690,10 +720,16 @@ Spring Boot MVC <em>classique</em></p>
 <div class="sect1">
 <h2 id="bibliographie"><a class="anchor" href="#bibliographie"></a>Bibliographie</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="SSR"></a>[SSR] <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/">Spring Security Reference</a></p>
+</li>
 <li>
 <p><a id="SSIA"></a>[SSIA] Laurentiu Spilca. Spring Security In Action. Manning 2020.</p>
+</li>
+<li>
+<p><a id="SBR"></a>[SBR] <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/">Spring Boot Reference</a></p>
 </li>
 <li>
 <p><a id="BAELDUNG"></a>[BAELDUNG] Sur Spring en général et Spring Security en particulier : <a href="https://www.baeldung.com/security-spring">Baeldung on Spring Security</a></p>
@@ -706,7 +742,7 @@ Spring Boot MVC <em>classique</em></p>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2020-02-29 18:59:31 CET
+Last updated 2020-03-01 18:06:45 CET
 </div>
 </div>
 </body>
